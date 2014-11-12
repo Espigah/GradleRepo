@@ -1,0 +1,16 @@
+
+task run  <<  {
+	// println printTaskProperties2.myProperty
+	 println printTaskProperties.myProperty
+}
+
+task printTaskProperties2  {
+	ext.myProperty = "2"
+    println printTaskProperties.myProperty
+}
+
+task printTaskProperties  {
+	ext.myProperty = "1"
+	 println printTaskProperties2.myProperty
+   
+}

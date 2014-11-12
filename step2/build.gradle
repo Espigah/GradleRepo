@@ -1,0 +1,12 @@
+task run << {
+     4.times { println "task$it " }
+}
+run.doLast {
+    println "Greetings from the $task0.name task."
+}
+4.times { counter ->
+    task "task$counter" << {
+        println "I'm task number $counter"
+    }
+}
+run.dependsOn task1, task3

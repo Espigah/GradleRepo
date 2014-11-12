@@ -1,0 +1,93 @@
+import groovy.json.JsonSlurper
+task run  <<  {
+	println name + ">>>"
+	println version
+	println group
+	println projectDir
+}
+
+task pathFiles  <<  {
+println "pathFiles>>>" - "F"
+	File srcDir = new File('files')
+	println srcDir 
+	srcDir.listFiles().each 
+	{
+		File file -> println file.name
+			
+	}
+}
+
+task treeFiles  <<  {
+	println name + ">>>"
+	FileTree tree = fileTree(dir: 'files')
+	tree.exclude '**/*.json'
+	tree.each 
+	{
+		File file ->  println file.name 			
+	}
+	
+}
+
+task parseXML   << {
+	println name + ">>>"
+	File srcFile = new File('files/xml.xml')
+	println srcFile
+	def xmlFile = new XmlParser().parse(srcFile)
+	println xmlFile.data
+	println xmlFile.intro
+	println xmlFile.intro.mensagem
+	println xmlFile.intro.mensagem[0].text()
+	println xmlFile.intro.mensagem[0].value()
+}
+
+
+task parseJSON   << {
+	println name + ">>>"
+	def jsonFile = new File('files/json.json')
+	def json = new JsonSlurper().parseText(jsonFile.text)
+	println json.intro.mensagem
+	println json.intro.mensagem[0]
+	println json[0].intro.mensagem
+}
+
+task JSON2XML   << {
+	println name + ">>>"
+	def jsonFile = new File('files/json.json')
+	def json = new JsonSlurper().parseText(jsonFile.text)
+	def sw = new StringWriter()
+    def xml = new groovy.xml.MarkupBuilder(sw)
+
+    //add json values to the xml builder
+    xml.resources() {
+        json[0].each {
+            k, v ->
+                string(name: "${k}", "${v}")
+        }
+    }
+
+    def stringsFile = new File("files/json.xml")
+    stringsFile.write(sw.toString())
+}
+
+task JSON_2_XML  <<  {
+println name + ">>>"
+	def jsonFile = new File('files/json.json')
+	def json = new JsonSlurper().parseText(jsonFile.text)
+	def sw = new StringWriter()
+    def xml = new groovy.xml.MarkupBuilder(sw)
+
+    //add json values to the xml builder
+    xml.resources() {
+        json[0].each {
+            k, v ->
+                k(name:"", "${v}")
+        }
+    }
+
+    def stringsFile = new File("files/json_perfect.xml")
+    stringsFile.write(sw.toString())
+}
+
+
+
+run.dependsOn JSON_2_XML
