@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'com.company.Main'
+
+sourceCompatibility = 1.5
+version = '1.0'
+buildDir = "out"
+
+
+println rootProject.name
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+jar {
+    baseName = 'junit-test-gradle'
+    version =  '0.1.0'
+}
+sourceSets {
+    test {
+        java {
+            srcDir 'src/com/company/test'
+        }
+        resources {
+            srcDir 'src/com/company/resources'
+        }
+    }
+}
+
+test {
+	testLogging {
+		events 'started', 'passed'
+	}
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2'
+}

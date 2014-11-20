@@ -1,0 +1,18 @@
+apply plugin: 'gradlefx'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.gradlefx', name: 'gradlefx', version: '1.0'
+    }
+}
+
+
+
+flexHome = 'C:/Users/VM-Espigah/AppData/Local/FlashDevelop/Apps/flexairsdk/4.6.0+15.0.0'
+type = 'swf'
+apply plugin: 'flashdevelop'
+apply plugin: 'templates'
+apply plugin: 'scaffold'

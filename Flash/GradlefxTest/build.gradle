@@ -1,0 +1,34 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.gradlefx', name: 'gradlefx', version: '1.0'
+    }
+}
+
+apply plugin: 'gradlefx'
+
+flexHome = 'C:/Users/VM-Espigah/AppData/Local/FlashDevelop/Apps/flexairsdk/4.6.0+15.0.0'
+type = 'swf'
+srcDirs = ['/src/']
+
+additionalCompilerOptions = [
+  '-player-version=10',
+  '-strict=false'
+]
+
+htmlWrapper {
+            title         = 'My Page Title'
+            percentHeight = 80
+            percentWidth  = 80
+    }
+	
+compile.doFirst {
+            println "Compilando...."
+}
+
+    compile.doLast {
+            println "Compilado!"
+    }

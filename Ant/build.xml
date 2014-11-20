@@ -1,0 +1,20 @@
+<project name="Core" default="main">
+
+    <property environment="env" />
+    <property name="fdbuild.dir" value="e:\program\FlashDevelop\Tools\fdbuild" />
+    <property name="flexsdk.dir" value="C:\Users\VM-Espigah\AppData\Local\FlashDevelop\Apps\flexairsdk\4.6.0+15.0.0\bin" />
+
+
+    <target name="build">
+        <exec executable="${fdbuild.dir}\fdbuild.exe">
+            <arg value="Ant.as3proj" />
+            <arg value="-compiler:${flexsdk.dir}" />
+            <arg value="-notrace" />
+        </exec>
+    </target>
+	
+    <target name="main">
+        <antcall target="build" />
+    </target>
+
+</project>

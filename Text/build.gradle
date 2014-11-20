@@ -1,0 +1,26 @@
+defaultTasks 't2b', 't2a'
+
+task a2b << {
+	String contents = new File( 'whatever.txt' ).getText( 'UTF-8' ) 
+	contents = contents.replaceAll( 'a', 'b' )
+	new File( 'whatever.txt' ).write( contents, 'UTF-8' )
+}
+
+task b2a << {
+	String contents = new File( 'whatever.txt' ).getText( 'UTF-8' ) 
+	contents = contents.replaceAll( 'b', 'a' )
+	new File( 'whatever.txt' ).write( contents, 'UTF-8' )
+}
+
+
+task t2b << {
+	String contents = new File( 't.txt' ).getText( 'UTF-8' ) 
+	contents = contents.replaceAll( 'a', 'b' )
+	new File( 't2b.txt' ).write( contents, 'UTF-8' )
+}
+
+task t2a << {
+	String contents = new File( 't.txt' ).getText( 'UTF-8' ) 
+	contents = contents.replaceAll( 'a', 'b' )
+	new File( 't2a.txt' ).write( contents, 'UTF-8' )
+}

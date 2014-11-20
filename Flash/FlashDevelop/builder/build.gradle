@@ -1,0 +1,16 @@
+import org.gradle.api.tasks.Exec;
+task build(type:Exec){
+	def fdbuild = "e:/program/FlashDevelop/Tools/fdbuild"
+	def flexsdk = "C:/Users/VM-Espigah/AppData/Local/FlashDevelop/Apps/flexairsdk/4.6.0+15.0.0/bin"
+	doFirst{
+	println 'Compilando'
+	}
+	doFirst{
+		 commandLine 'cmd', '/c', "${fdbuild}/fdbuild.exe", 'Ant.as3proj', "-compiler:${flexsdk}", "-notrace"
+  }
+  
+  doLast{
+	println 'Compilado!'
+	}
+	 
+}

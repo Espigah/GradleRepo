@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        maven {
+            url 'http://dl.bintray.com/cjstehno/public'
+        }
+    }
+    dependencies {
+        classpath 'gradle-templates:gradle-templates:1.4.1'
+    }
+}
+apply plugin: 'templates'
+
+
+
+import templates.*
+task createMyProject{
+	group 'MyTask'
+	description 'createMyProject'
+	ext.projName = "MyCustomProject"
+}<< {
+    //String projectName = TemplatesPlugin.prompt('Project Name:')
+    String projectName = projName
+    ProjectTemplate.fromRoot(projectName) {
+        'src/app/' {}
+		 'src/app/' {
+            "Main.java" template: './java-class.tmpl',
+                    classPackage: 'app',
+                    className: 'Main',
+					lorem : 'ipsum'
+        }
+        'src/tests' {}
+		'lib/' {}
+		'app/bin' {}
+		'app/resources' {}
+        'build.gradle' '''
+            apply plugin: 'java'
+            sourceSets {
+                main {
+                    java {
+                        srcDir 'src'
+                    }
+                }
+            }'''
+		'settings.gradle' 'rootProject.name = '+projectName
+    }
+}
