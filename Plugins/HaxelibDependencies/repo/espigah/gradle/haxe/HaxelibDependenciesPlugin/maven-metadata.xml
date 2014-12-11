@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>espigah.gradle.haxe</groupId>
+  <artifactId>HaxelibDependenciesPlugin</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <versioning>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20141211210338</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,10 @@
+:compileJava UP-TO-DATE
+:compileGroovy
+:processResources
+:classes
+:jar
+:uploadArchives
+
+BUILD SUCCESSFUL
+
+Total time: 6.671 secs

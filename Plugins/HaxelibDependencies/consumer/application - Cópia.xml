@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+
+	<haxelib name="openfl" />
+	<haxelib name="actuate" version="1.0.0" />
+	<haxelib name="HaxePunk" version="1.0.0"/>
+	<haxelib name="GAnalytics" if="android" />
+	<haxelib name="haxe-ga" if="flash" />
+
+	<haxelib name="nmex" if="ios" />
+
+	
+</project>
+

@@ -1,0 +1,17 @@
+buildscript {
+  repositories {
+        maven {
+            url uri('../repo')
+        }
+    }
+  dependencies {
+        classpath group: 'espigah.gradle.haxe',  name: 'HaxelibDependenciesPlugin',  version: '1.0-SNAPSHOT'
+    }
+}
+apply plugin: 'HaxelibDependenciesPlugin'
+haxelib{		
+	openflMode("application.xml");	
+	addLib("yaml","1.1.8");
+	addLib("actuate");
+}
+
