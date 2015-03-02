@@ -1,0 +1,35 @@
+import au.com.coherentsoftware.gradle.database.task.*
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath('au.com.coherentsoftware.gradle:Gradle-DatabasePlugin:1.0.12')
+    }
+}
+
+apply plugin: 'database'
+
+
+database {	
+	driver  = "org.postgresql.Driver"
+	username = "postgres"
+	password = "123"
+	host = 'localhost'  // the default value
+    port = '5432' // the default value
+}
+task tt << {
+
+// Init jdbc so gradle can connect directly to db
+URLClassLoader loader = GroovyObject.class.classLoader as URLClassLoader
+configurations.driver.each { File file ->
+    loader.addURL(file.toURI().toURL())
+}
+Class driver = loader.loadClass(project.database.driver)
+}
+task initMyDb(type: DbInit) {
+    database  'C:\\Program Files\\PostgreSQL\\9.4\\data\\global'
+    dataFile = '../_resource/1/data1.sql'
+}

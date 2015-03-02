@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'postgresql:postgresql:9.0-801.jdbc4'
+    }
+}
+
+import groovy.sql.Sql
+import java.util.Date
+task execute () {
+gradle.class.classLoader.addURL(new File('postgresql-9.4-1201.jdbc4.jar').toURI().toURL())
+	def sql = Sql.newInstance(
+	gradle.ext.dbUrl,
+	gradle.ext.dbUsername,
+	gradle.ext.dbPassword,
+	gradle.ext.dbDriver
+	)
+	
+
+	FileTree tree = fileTree(dir: gradle.ext.sql)
+	tree.include '**/*.sql'
+	
+	
+	tree.each {File file ->		
+		String sqlString = file.text		
+		def time1 = System.currentTimeMillis()
+		sql.execute(sqlString)
+		def time2 = System.currentTimeMillis()
+		println file.name+" time(ms) = "+ (time2 - time1);
+	}
+
+}
+
+
+

@@ -1,0 +1,20 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.flywaydb:flyway-gradle-plugin:3.1"
+    }
+}
+
+apply plugin: 'flyway'
+apply plugin: 'java'
+
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/shutdown=true'
+    user = 'postgres'
+    password = '123'
+    schemas = ['public']
+	encoding = 'ISO-8859-1'   
+	
+}

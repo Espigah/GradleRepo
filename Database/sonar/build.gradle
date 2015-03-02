@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+       
+    }
+}
+
+
+apply plugin: "sonar"
+
+sonar {
+    server {
+        url = "http://localhost.com"
+    }
+    database {
+        url = "jdbc:postgresql://localhost:5432/postgres"
+        driverClassName = "org.postgresql.Driver"
+        username = "postgres"
+        password = "123"
+    }
+}
