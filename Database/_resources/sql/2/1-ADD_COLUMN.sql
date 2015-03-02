@@ -1,0 +1,1 @@
+ALTER TABLE "Data2" ADD COLUMN data bigint;
